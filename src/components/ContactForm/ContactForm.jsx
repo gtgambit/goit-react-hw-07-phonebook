@@ -29,13 +29,14 @@ export const ContactForm = () => {
   const handleSubmit = event => {
     event.preventDefault();
     const newContact = {
-      name: name,
-      number: number,
+      name,
+      number,
     };
     if (contacts.some(contact => contact.name === newContact.name)) {
       return alert(`${newContact.name} is already in contacts.`);
     }
     dispatch(sendContact(newContact));
+    console.log(newContact);
     reset();
   };
 

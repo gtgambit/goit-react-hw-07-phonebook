@@ -23,25 +23,24 @@ const contactsSlice = createSlice({
         state.error = null;
       })
       .addCase(requestContacts.fulfilled, (state, action) => {
-        state.items = action.payload;
         state.isLoading = false;
+        state.items = action.payload;
       })
       .addCase(requestContacts.rejected, (state, action) => {
-        state.error = action.payload;
         state.isLoading = false;
+        state.error = action.payload;
       })
-
       .addCase(sendContact.pending, state => {
         state.isLoading = true;
         state.error = null;
       })
       .addCase(sendContact.fulfilled, (state, action) => {
-        state.items.push(action.payload);
         state.isLoading = false;
+        state.items.push(action.payload);
       })
       .addCase(sendContact.rejected, (state, action) => {
-        state.error = action.payload;
         state.isLoading = false;
+        state.error = action.payload;
       })
 
       .addCase(removeContact.pending, state => {
@@ -49,14 +48,14 @@ const contactsSlice = createSlice({
         state.error = null;
       })
       .addCase(removeContact.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.items = state.items.filter(
           contact => contact.id !== action.payload.id
         );
-        state.isLoading = false;
       })
       .addCase(removeContact.rejected, (state, action) => {
-        state.error = action.payload;
         state.isLoading = false;
+        state.error = action.payload;
       }),
 });
 
